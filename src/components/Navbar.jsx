@@ -7,14 +7,17 @@ const Navbar = () => {
   return (
     <div className="navbar fixed bg-base-100 px-5">
       <div className="flex-1">
-        <a className="normal-case text-xl font-bold" href="/">
-          daisyUI
+        <a className="capitalize text-2xl font-extrabold" href="/">
+          <span className="text-purple-300">J</span>
+          <span className="text-purple-400">I</span>
+          <span className="text-purple-500">L</span>
+          <span className="text-purple-600">L</span>
         </a>
       </div>
       <ToggleTheme />
       <div className="flex-none">
         <NavCart />
-        <NavProfile/>
+        <NavProfile />
       </div>
     </div>
   );

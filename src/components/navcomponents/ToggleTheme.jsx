@@ -1,18 +1,19 @@
 import React from "react";
-// import { useEffect } from "react";
+import { useEffect } from "react";
 
 const ToggleTheme = () => {
-  //   const [theme, setTheme] = React.useState("light");
-  //   const changeTheme = () => {
-  //     setTheme(theme === "light" ? "dark" : "light");
-  //   };
+  const [theme, setTheme] = React.useState("dark");
+  const changeTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
-  //   useEffect(() => {
-  //     document.querySelector("html").setAttribute("data-theme", theme);
-  //   }, [theme]);
+  useEffect(() => {
+    document.querySelector("html").setAttribute("data-theme", theme);
+  }, [theme]);
+
   return (
     <label className="swap swap-rotate pr-5 ">
-      <input type="checkbox" />
+      <input type="checkbox" onClick={changeTheme} />
       <svg
         className="swap-on fill-current w-6 h-6"
         xmlns="http://www.w3.org/2000/svg"
