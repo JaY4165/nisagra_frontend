@@ -1,13 +1,15 @@
 import React from "react";
 import LoginCard from "../components/LoginCard";
+import coffee from "../assets/coffee.jpg";
 
 const LoginPage = () => {
   return (
-    <section className="">
-      <div className="flex justify-center align-center mt-[10em]">
-        <LoginCard />
+    <div className="grid grid-cols-2 h-[50vh]">
+      <LoginCard />
+      <div>
+        <img className="h-[100%]" src={coffee} alt="biryani" />
       </div>
-    </section>
+    </div>
   );
 };
 
