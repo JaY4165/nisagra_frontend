@@ -1,20 +1,15 @@
 import React from "react";
-import pancake from "../assets/pancake.jpg";
+import RegistrationForm from "../components/regcomponents/RegistrationForm";
+import RegistrationImg from "../components/regcomponents/RegistrationImg";
 
 const RegistrationPage = () => {
   return (
-    <div className="max-h-[90vh] max-w-[100%]">
-      <section className="grid grid-cols-2">
-        <div className="">
-          <img
-            src={pancake}
-            alt="pancake"
-            className="object-cover w-[100%] max-h-[100%]"
-          />
-        </div>
-        <div className=""></div>
-      </section>
-    </div>
+    <section className="h-[100%] w-[100%]">
+      <div className="grid md:grid-cols-2 md:grid-rows-1 sm:grid-cols-1 sm:grid-rows-2">
+        <RegistrationImg />
+        <RegistrationForm />
+      </div>
+    </section>
   );
 };
 
