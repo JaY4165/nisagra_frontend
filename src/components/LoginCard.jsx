@@ -14,18 +14,18 @@ const LoginCard = () => {
             Create an Account
           </h1>
           <section>
-            <div className="mb-3">
+            <div className="mb-3 sm:px-5 md:px-5 lg:px-16 xl:px-48 2xl:px-96">
               <input
                 type="email"
                 placeholder="email Address"
-                className="input w-full max-w-xs rounded-full border-stone-900 bg-stone-700 mt-5 h-8 font-light"
+                className="input w-full max-w-xs rounded-full border-stone-900 bg-stone-700 mt-5 h-8 font-light sm:w-[300px] "
               />
             </div>
-            <div>
+            <div className="px-32 sm:w-full sm:px-5  md:px-5 lg:px-16 xl:px-48 2xl:px-96">
               <input
                 type="password"
                 placeholder="password"
-                className="input w-full max-w-xs rounded-full border-stone-900 bg-stone-700   mt-3 h-8  font-light"
+                className="input w-full max-w-xs rounded-full border-stone-900 bg-stone-700   mt-3 h-8  font-light sm:w-[300px] 2xl:w"
               />
             </div>
             <div className="text-center">
