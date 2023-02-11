@@ -2,11 +2,11 @@ import React from "react";
 
 const RegistrationForm = () => {
   return (
-    <div className="h-screen w-[100%] overflow-y-hidden bg-neutral-800">
-      <h2 className="text-4xl px-20 pt-20 pb-10  text-white font-sans">
+    <div className="h-screen w-[100%] sm:overflow-y-hidden overflow-x-auto bg-neutral-800 pb-5">
+      <h2 className="text-4xl px-20 pt-5 pb-10  text-white font-sans">
         Register
       </h2>
-      <form action="/register" method="post">
+      <form action="/register" method="post" className="h-auto">
         <div className="grid grid-cols-1 grid-rows-2 px-20 gap-10 sm:grid-cols-2 sm:grid-rows-1 md:grid-cols- ">
           <input
             type="text"
@@ -53,7 +53,7 @@ const RegistrationForm = () => {
           />
         </div>
         <div className="grid grid-cols-1 grid-rows-1 gap-10 pt-10 px-20">
-          <button className="btn btn-wide text-stone-800 font-semibold  bg-emerald-400  border-green-500  hover:bg-white hover:text-emerald-700 duration-300">
+          <button className="btn text-stone-800 font-semibold  bg-emerald-400  border-green-500  hover:bg-white hover:text-emerald-700 duration-300">
             SUBMIT
           </button>
         </div>
