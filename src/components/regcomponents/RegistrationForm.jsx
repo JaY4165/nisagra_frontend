@@ -3,7 +3,7 @@ import React from "react";
 const RegistrationForm = () => {
   return (
     <div className="h-screen w-[100%] sm:overflow-y-hidden overflow-x-auto bg-neutral-800 pb-5">
-      <h2 className="text-4xl px-20 pt-5 pb-10  text-white font-sans">
+      <h2 className="text-4xl px-20 pt-5 pb-10  text-white font-sans selection:text-success">
         Register
       </h2>
       <form action="/register" method="post" className="h-auto">
