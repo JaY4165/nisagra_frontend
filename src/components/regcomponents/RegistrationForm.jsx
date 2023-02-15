@@ -35,7 +35,7 @@ const RegistrationForm = () => {
           />
           <input
             type="text"
-            placeholder="Enter Confirm Password"
+            placeholder="Confirm Password"
             className="w-full py-2 px-4 rounded-lg outline-none bg-stone-700 placeholder:text-stone-400"
           />
         </div>
@@ -55,7 +55,7 @@ const RegistrationForm = () => {
         </div>
         <div className="grid grid-cols-1 grid-rows-1 gap-10 pt-10 px-20">
           <button className="btn text-stone-800 font-semibold  bg-emerald-400  border-green-500  hover:bg-white hover:text-emerald-700 duration-300">
-            SUBMIT
+            SignUp
           </button>
         </div>
         <div>
