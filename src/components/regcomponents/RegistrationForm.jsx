@@ -2,12 +2,12 @@ import React from "react";
 
 const RegistrationForm = () => {
   return (
-    <div className="h-screen w-[100%] sm:overflow-y-hidden overflow-x-auto bg-neutral-800 pb-5">
+    <div className="h-screen w-[100%] sm:overflow-y-hidden overflow-x-auto bg-neutral-800 pb-5 xl:pt-10">
       <h2 className="text-4xl px-20 pt-5 pb-10  text-white font-sans selection:text-success">
         Register
       </h2>
       <form action="/register" method="post" className="h-auto">
-        <div className="grid grid-cols-1 grid-rows-2 px-20 gap-10 sm:grid-cols-2 sm:grid-rows-1 md:grid-cols- ">
+        <div className="grid grid-cols-1 grid-rows-2 px-20 gap-10 sm:grid-cols-2 sm:grid-rows-1 md:grid-cols-1">
           <input
             type="text"
             placeholder="Enter First Name"
