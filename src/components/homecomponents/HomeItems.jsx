@@ -22,7 +22,9 @@ const HomeItems = () => {
               <h2 className="card-title">{item.name}</h2>
               <p>{item.price}</p>
               <div className="card-actions justify-end">
-                <button className="btn btn-primary">Buy Now</button>
+                <button className="btn btn-success bg-opacity-80">
+                  Buy Now
+                </button>
               </div>
             </div>
           </div>
