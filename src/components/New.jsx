@@ -4,7 +4,7 @@ const New = () => {
   return (
     <div>
         <div className="h-screen w-[100%] sm:overflow-y-hidden overflow-x-auto bg-neutral-800 pb-5 ">
-      <h2 className="text-4xl ml-24 mt-80 pt-5 pb-10  text-white font-sans selection:text-success">
+      <h2 className="text-4xl ml-36 mt-80 pt-5 pb-10  text-white font-sans selection:text-success">
         Create an Account
       </h2>
       <form action="/register" method="post" className="h-auto">
