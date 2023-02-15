@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const RegistrationForm = () => {
   return (
-    <div className="h-screen w-[100%] sm:overflow-y-hidden overflow-x-auto bg-neutral-800 pb-5 xl:pt-10">
-      <h2 className="text-4xl px-20 pt-5 pb-10  text-white font-sans selection:text-success">
+    <div className="h-screen w-[100%] sm:overflow-y-scroll overflow-x-auto bg-neutral-800 pb-5 xl:pt-2">
+      <h2 className="text-4xl text-center sm:text-left px-20 pt-5 pb-10  text-white font-sans selection:text-success">
         Register
       </h2>
       <form action="/register" method="post" className="h-auto">
@@ -56,6 +57,17 @@ const RegistrationForm = () => {
           <button className="btn text-stone-800 font-semibold  bg-emerald-400  border-green-500  hover:bg-white hover:text-emerald-700 duration-300">
             SUBMIT
           </button>
+        </div>
+        <div>
+          <p className="text-gray-200 text-xs sm:text-lg text-center pt-5">
+            Already have an account ?{" "}
+            <Link
+              to={`/login`}
+              className="link link-accent no-underline text-emerald-400"
+            >
+              SignIn
+            </Link>
+          </p>
         </div>
       </form>
     </div>

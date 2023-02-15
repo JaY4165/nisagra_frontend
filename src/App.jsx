@@ -20,7 +20,7 @@ function App() {
       ],
     },
     {
-      path: "/reg",
+      path: "/register",
       element: <RegistrationPage />,
     },
     {
