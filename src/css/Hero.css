@@ -1,0 +1,22 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Tourney:wght@100&display=swap"); */
+
+#hero {
+  background-image: url(../assets/pizza.jpg);
+}
+
+#heroHead {
+  /* font-family: "Tourney", cursive; */
+  color: transparent;
+  -webkit-text-stroke: 1px white;
+  background-image: url(../assets/back.png);
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-position: 0 0;
+  animation: back 20s linear infinite;
+}
+
+@keyframes back {
+  100% {
+    background-position: 3000px 0;
+  }
+}

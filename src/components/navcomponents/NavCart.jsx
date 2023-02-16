@@ -3,7 +3,7 @@ import React from "react";
 const NavCart = () => {
   return (
     <div className="dropdown dropdown-end pr-2">
-      <label tabIndex={0} className="btn btn-ghost btn-circle">
+      <label tabIndex={0} className="btn btn-ghost btn-circle text-white">
         <div className="indicator">
           <svg
             xmlns="http://www.w3.org/2000/svg"

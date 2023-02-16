@@ -1,16 +1,33 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import NavCart from "./navcomponents/NavCart";
 import NavProfile from "./navcomponents/NavProfile";
 import { Outlet, Link } from "react-router-dom";
-import "../css/Navbar.css";
 
 const Navbar = () => {
+  const [navScroll, setnavScroll] = useState(false);
+  const changeNavBg = () => {
+    if (window.scrollY >= 5) {
+      setnavScroll(true);
+    } else {
+      setnavScroll(false);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", changeNavBg);
+  }, []);
+
   return (
     <>
-      <div className="navbar bg-[#2a303c] fixed z-50">
+      <div
+        className={
+          navScroll
+            ? "navbar bg-[#2a303c] fixed z-50"
+            : "navbar bg-transparent fixed z-50"
+        }
+      >
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost btn-circle">
+            <label tabIndex={0} className="btn btn-ghost btn-circle text-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -21,7 +38,7 @@ const Navbar = () => {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth="2"
+                  strokeWidth="4"
                   d="M4 6h16M4 12h16M4 18h7"
                 />
               </svg>
@@ -40,7 +57,11 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-center">
-          <Link to={`/`} className="normal-case font-thin text-xl" id="NavHead">
+          <Link
+            to={`/`}
+            className="normal-case font-thin text-2xl text-white"
+            id="NavHead"
+          >
             NISAGRA
           </Link>
         </div>

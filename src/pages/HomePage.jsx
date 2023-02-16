@@ -1,9 +1,10 @@
 import HomeItems from "../components/homecomponents/HomeItems";
-import home from "../assets/pancake.jpg";
+import Hero from "../components/homecomponents/Hero";
 
 const HomePage = () => {
   return (
     <main>
+      <Hero />
       <HomeItems />
     </main>
   );
