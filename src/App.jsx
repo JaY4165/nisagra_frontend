@@ -4,6 +4,7 @@ import RegistrationPage from "./pages/RegistrationPage";
 import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import LoginPage from "./pages/LoginPage";
+import Cart from "./pages/Cart";
 
 function App() {
   const router = createBrowserRouter([
@@ -16,6 +17,10 @@ function App() {
           path: "/",
           index: true,
           element: <HomePage />,
+        },
+        {
+          path: "/cart",
+          element: <Cart />,
         },
       ],
     },

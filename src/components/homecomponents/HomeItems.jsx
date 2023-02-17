@@ -4,7 +4,10 @@ import { data } from "../../json/data";
 const HomeItems = () => {
   const foods = data;
   return (
-    <div className="pt-32 pb-10">
+    <div className="pt-20 pb-10">
+      <h1 className="uppercase text-5xl text-white font-extralight text-center pb-20">
+        Menu
+      </h1>
       <div className="grid grid-cols-1 pl-5 pr-5 sm:grid-cols-2 lg:grid-cols-3 gap-10 xl:grid-cols-4">
         {foods.map((item, index) => (
           <div

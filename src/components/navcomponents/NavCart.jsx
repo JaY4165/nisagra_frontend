@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const NavCart = () => {
   return (
@@ -28,11 +29,13 @@ const NavCart = () => {
         tabIndex={0}
         className="mt-3 card card-compact dropdown-content w-52  shadow"
       >
-        <div className="card-body dark:bg-neutral rounded-lg">
-          <span className="font-bold text-lg">8 Items</span>
-          <span className="text-blue-600 font-semibold">Subtotal: $999</span>
+        <div className="card-body bg-white/80 rounded-lg">
+          <span className="font-bold text-black text-lg">8 Items</span>
+          <span className="text-blue-800 font-semibold">Subtotal: $999</span>
           <div className="card-actions">
-            <button className="btn btn-primary btn-block">View cart</button>
+            <Link to={"/cart"} className="btn btn-primary btn-block">
+              View cart
+            </Link>
           </div>
         </div>
       </div>

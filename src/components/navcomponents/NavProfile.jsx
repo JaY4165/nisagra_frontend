@@ -11,9 +11,9 @@ const NavProfile = () => {
       </label>
       <ul
         tabIndex={0}
-        className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-transparent dark:bg-neutral rounded-lg w-52"
+        className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-white/80 rounded-lg w-52"
       >
-        <li>
+        <li className="text-black font-semibold">
           <a className="justify-between font-medium">Log out</a>
         </li>
       </ul>
