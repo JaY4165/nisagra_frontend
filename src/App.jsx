@@ -4,7 +4,7 @@ import RegistrationPage from "./pages/RegistrationPage";
 import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import LoginPage from "./pages/LoginPage";
-import Cart from "./pages/Cart";
+import CartPage from "./pages/CartPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -20,7 +20,7 @@ function App() {
         },
         {
           path: "/cart",
-          element: <Cart />,
+          element: <CartPage />,
         },
       ],
     },
