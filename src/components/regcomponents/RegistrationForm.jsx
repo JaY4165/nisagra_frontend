@@ -1,20 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 
 const RegistrationForm = () => {
   const schema = yup.object().shape({
-    firstName: yup
+    firstname: yup
       .string()
       .required("First name field is required")
       .matches(/[A-Za-z]/i, "Enter valid name")
+      .min(2, "Atleast 2 characters are required")
       .max(150, "Only 150 characters are allowed"),
-    lastName: yup
+    lastname: yup
       .string()
       .required("Last name field is required")
       .matches(/[A-Za-z]/i, "Enter valid name")
+      .min(2, "Atleast 2 characters are required")
       .max(150, "Only 150 characters are allowed"),
     email: yup
       .string()
@@ -42,6 +45,8 @@ const RegistrationForm = () => {
       .max(250, "Only 250 characters are allowed"),
   });
 
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -50,40 +55,45 @@ const RegistrationForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data, event) => {
+    event.preventDefault();
+    try {
+      console.log(data);
+      await axios.post("http://localhost:8090/register/signup", data);
+      navigate("/login");
+      alert("Please Login using your credentials");
+    } catch (err) {
+      alert(err);
+    }
+  };
 
   return (
     <div className="h-screen w-[100%] sm:overflow-y-scroll overflow-x-auto bg-neutral-800 pb-5 xl:pt-2">
       <h2 className="text-4xl text-center sm:text-left px-20 pt-5 pb-10  text-white font-sans selection:text-success">
         Register
       </h2>
-      <form
-        action="/register"
-        method="post"
-        className="h-auto"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form method="post" className="h-auto" onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 grid-rows-2 px-20 gap-10 sm:grid-cols-2 sm:grid-rows-1 md:grid-cols-1 relative">
           <input
             type="text"
             placeholder="Enter First Name"
             className="w-full py-2 px-4 rounded-lg outline-none bg-stone-700 placeholder:text-stone-400"
-            {...register("firstName")}
+            {...register("firstname")}
           />
           {errors.firstName && (
             <p className="text-red-500 absolute mt-10 ml-20 font-normal text-sm">
-              {errors.firstName.message}
+              {errors.firstname.message}
             </p>
           )}
           <input
             type="text"
             placeholder="Enter Last Name"
             className="w-full py-2 px-4 rounded-lg outline-none bg-stone-700 placeholder:text-stone-400"
-            {...register("lastName")}
+            {...register("lastname")}
           />
-          {errors.lastName && (
+          {errors.lastname && (
             <p className="text-red-500 absolute mt-[7.5rem] ml-20 font-normal text-sm">
-              {errors.lastName.message}
+              {errors.lastname.message}
             </p>
           )}
         </div>
