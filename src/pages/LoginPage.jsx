@@ -1,22 +1,21 @@
 import React from "react";
-import LoginCard from "../components/LoginCard";
-import burger1 from "../assets/burger1.jfif";
-import Login from "../components/Login";
-import New from "../components/New";
+import LoginForm from "../components/logincomponents/LoginForm";
+import LoginImg from "../components/logincomponents/LoginImg";
 
 const LoginPage = () => {
   return (
-    <div className="grid grid-cols-2 h-[50vh]">
+    <section className="h-[100%] w-[100%]">
+    <div className="grid md:grid-cols-2 md:grid-rows-1 sm:grid-cols-1 sm:grid-rows-2">
       
       
-      <New/>
+      <LoginForm/>
+      <LoginImg/>
+
       
 
-      <div>
-        <img className="h-[100%]" src={burger1} alt="burger" />
-        
       </div>
-    </div>
+      </section>
+       
   );
 };
 
