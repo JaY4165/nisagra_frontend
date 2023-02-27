@@ -3,7 +3,7 @@ import "../../css/Loginimage.css";
 
 const LoginImg = () => {
   return (
-    <>
+    
     <div className="bgImageSet h-screen w-[100%] flex items-center justify-center flex-col relative">
       <h3 className="text-4xl text-amber-50 z-50 font-sans font-semibold selection:text-success">
         Welcome to Nisagra
@@ -14,7 +14,7 @@ const LoginImg = () => {
       <div className="overLay"></div>
     </div>
     
-  </>
+  
   );
 };
 

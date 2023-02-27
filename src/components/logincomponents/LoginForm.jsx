@@ -28,12 +28,7 @@ const LoginForm = () => {
         <div>
           <p className="text-gray-200 text-xs sm:text-lg text-center pt-5">
             Don't have an account ?{" "}
-            <Link
-              to={`/register`}
-              className="link link-accent no-underline text-emerald-400  "
-            >
-              SignUp
-            </Link>
+
           </p>
         </div>
       </form>
