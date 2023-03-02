@@ -1,20 +1,19 @@
 import React from "react";
-
-import CartCards from "../components/cartcomponents/CartCards";
+import CartCard from "../components/cartcomponents/CartCard";
+import CartCheckoutCard from "../components/cartcomponents/CartCheckoutCard";
+import "../css/CartPage.css";
 
 const Cart = () => {
   return (
-    <section className="h-screen w-full">
-      <div className="h-40 w-full p-">
-        <h1 className="text-white text-4xl font-light uppercase">Shopping</h1>
-      </div>
-      <div className="grid grid-cols-12 h-screen w-full pt-24 p-20">
-        <div className="col-span-9">
-          <CartCards />
+    <div className="h-screen pt-20">
+      <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
+      <div className="p-5 sm:p-10 md:pl-20 lg:pl-44 md:flex gap-14">
+        <div className="grid grid-cols-1">
+          <CartCard />
         </div>
-        <div className="col-span-3"></div>
+        <CartCheckoutCard />
       </div>
-    </section>
+    </div>
   );
 };
 

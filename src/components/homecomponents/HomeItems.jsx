@@ -17,7 +17,7 @@ const HomeItems = () => {
             <figure>
               <img
                 src={item.image}
-                alt="Food"
+                alt={item.name}
                 className="w-full h-[150px] object-cover"
               />
             </figure>
