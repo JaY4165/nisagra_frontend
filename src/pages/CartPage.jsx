@@ -5,15 +5,19 @@ import "../css/CartPage.css";
 
 const Cart = () => {
   return (
-    <div className="h-screen pt-20">
-      <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
-      <div className="p-5 sm:p-10 md:pl-20 lg:pl-44 md:flex gap-14">
-        <div className="grid grid-cols-1">
-          <CartCard />
+    <section className="h-screen w-screen overflow-x-hidden">
+      <div className="h-screen pt-20">
+        <h1 className="mb-10 text-center text-2xl font-semibold font-sans">
+          Cart Items
+        </h1>
+        <div className="mx-auto max-w-6xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
+          <div className="rounded-lg md:w-2/3">
+            <CartCard />
+          </div>
+          <CartCheckoutCard />
         </div>
-        <CartCheckoutCard />
       </div>
-    </div>
+    </section>
   );
 };
 

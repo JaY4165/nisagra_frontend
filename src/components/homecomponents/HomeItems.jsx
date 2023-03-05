@@ -1,5 +1,6 @@
 import React from "react";
 import { data } from "../../json/data";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const HomeItems = () => {
   const foods = data;
@@ -25,8 +26,9 @@ const HomeItems = () => {
               <h2 className="card-title">{item.name}</h2>
               <p>{item.price}</p>
               <div className="card-actions justify-end">
-                <button className="btn btn-success bg-opacity-80">
-                  Buy Now
+                <button className="btn btn-md btn-ghost text-2xl">
+                  <AiOutlineShoppingCart />{" "}
+                  <span className="text-xs pl-2">Add to cart</span>
                 </button>
               </div>
             </div>

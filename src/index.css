@@ -8,3 +8,15 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
+
+::-webkit-scrollbar {
+  width: 0.2em;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-none;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-emerald-400;
+}
