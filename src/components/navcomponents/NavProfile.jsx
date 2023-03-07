@@ -1,7 +1,17 @@
 import React from "react";
 import profile from "../../assets/profile.jpeg";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 
-const NavProfile = () => {
+const NavProfile = ({ userName }) => {
+  const { setAuth, setUser } = useContext(AuthContext);
+
+  const logOut = async () => {
+    alert("logged out ");
+    setAuth(false);
+    setUser("");
+  };
+
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -14,7 +24,14 @@ const NavProfile = () => {
         className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-white/80 rounded-lg w-52"
       >
         <li className="text-black font-semibold">
-          <a className="justify-between font-medium">Log out</a>
+          <p className="justify-between font-medium">
+            Logged in as {userName.loggedInAs}
+          </p>
+        </li>
+        <li className="text-black font-semibold">
+          <p className="justify-between font-medium" onClick={logOut}>
+            Log out
+          </p>
         </li>
       </ul>
     </div>

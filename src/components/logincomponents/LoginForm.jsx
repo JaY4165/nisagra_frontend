@@ -1,12 +1,15 @@
-import React from "react";
+import { useContext, React } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
 
 const LoginForm = () => {
+  const { setAuth, setUser } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const schema = yup.object().shape({
@@ -36,6 +39,8 @@ const LoginForm = () => {
       if ((await loginResponse.data.status) === 200) {
         const emailAuth = await data.email.split("@");
         alert(emailAuth[0]);
+        setAuth(true);
+        setUser(emailAuth[0]);
         navigate("/");
       }
     } catch (err) {
