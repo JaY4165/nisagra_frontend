@@ -37,9 +37,9 @@ const CartCheckoutCard = () => {
       <hr className="my-7" />
       <div className="flex justify-between">
         <p className="text-lg font-bold">Total</p>
-        <div className="">
+        <div className="flex-col">
           <p className="mb-1 text-lg font-bold">$134.98 USD</p>
-          <p className="text-sm text-gray-700 ml-6">including VAT</p>
+          <p className="text-sm text-gray-700 ml-6">including GST</p>
         </div>
       </div>
       <button className="mt-6 w-full rounded-md bg-emerald-400 py-1.5 font-medium text-stone-800 hover:bg-white hover:text-emerald-700 duration-300">

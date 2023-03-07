@@ -163,7 +163,10 @@ const RegistrationForm = () => {
           )}
         </div>
         <div className="grid grid-cols-1 grid-rows-1 gap-10 pt-10 px-20">
-          <button className="btn text-stone-800 font-semibold  bg-emerald-400  border-green-500  hover:bg-white hover:text-emerald-700 duration-300">
+          <button
+            type="submit"
+            className="btn text-stone-800 font-semibold  bg-emerald-400  border-green-500  hover:bg-white hover:text-emerald-700 duration-300"
+          >
             SignUp
           </button>
         </div>
