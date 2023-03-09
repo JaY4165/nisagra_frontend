@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { CartContext } from "../../context/CartContext";
 
 const CartCard = () => {
+  const { setCartStatus, cartStatus } = useContext(CartContext);
+
   const [food, setFood] = useState([]);
+  // const [cartStatus, setCartStatus] = useState("empty");
 
   const id = window.localStorage.getItem("UserId");
   // const id = 12;
@@ -10,7 +14,15 @@ const CartCard = () => {
   const fetchCartData = async () => {
     try {
       const data = await axios.get(`http://localhost:8090/cart/${id}`);
+      console.log(data.data.data);
       setFood(data.data.data);
+      setCartStatus("notempty");
+      console.log(cartStatus);
+
+      if (data.data.data.length === 0) {
+        setCartStatus("empty");
+        console.log(cartStatus);
+      }
     } catch (err) {
       alert(err);
     }
@@ -22,13 +34,7 @@ const CartCard = () => {
 
   return (
     <>
-      {food ? (
-        <div className="flex justify-center items-start mt-36 h-screen">
-          <h1 className="text-2xl font-bold text-gray-500 z-50">
-            No Items in Cart
-          </h1>
-        </div>
-      ) : (
+      {cartStatus === "notempty" ? (
         food.map((item) => (
           <div
             className="justify-between mb-6 rounded-lg bg-black/20 p-6 shadow-md sm:flex sm:justify-start relative"
@@ -86,6 +92,12 @@ const CartCard = () => {
             </div>
           </div>
         ))
+      ) : (
+        <div className="flex h-screen w-screen justify-center items-center">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold font-sans texy-white">
+            Cart is empty
+          </h1>
+        </div>
       )}
     </>
   );
