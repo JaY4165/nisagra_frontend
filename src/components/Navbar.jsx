@@ -1,11 +1,11 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import NavCart from "./navcomponents/NavCart";
 import NavProfile from "./navcomponents/NavProfile";
 import { Outlet, Link } from "react-router-dom";
-import { AuthContext } from "../context/AuthProvider";
 
 const Navbar = () => {
-  const { auth, user, setAuth } = useContext(AuthContext);
+  const auth = window.localStorage.getItem("Auth");
+  const user = window.localStorage.getItem("User");
 
   const [navScroll, setnavScroll] = useState(false);
   const changeNavBg = () => {
@@ -80,7 +80,7 @@ const Navbar = () => {
           {auth && user ? (
             <>
               <NavCart />
-              <NavProfile userName={{ loggedInAs: user }} />
+              <NavProfile />
             </>
           ) : (
             <button className="btn btn-md btn-ghost text-white text-xl font-thin normal-case duration-300">

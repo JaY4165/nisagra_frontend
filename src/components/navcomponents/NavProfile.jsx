@@ -1,15 +1,17 @@
 import React from "react";
 import profile from "../../assets/profile.jpeg";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
-const NavProfile = ({ userName }) => {
-  const { setAuth, setUser } = useContext(AuthContext);
+const NavProfile = () => {
+  const navigate = useNavigate();
 
   const logOut = async () => {
-    alert("logged out ");
-    setAuth(false);
-    setUser("");
+    alert("logged out");
+    window.localStorage.removeItem("Auth");
+    window.localStorage.removeItem("User");
+    window.localStorage.removeItem("UserId");
+    navigate("/");
+    window.location.reload();
   };
 
   return (
@@ -25,7 +27,7 @@ const NavProfile = ({ userName }) => {
       >
         <li className="text-black font-semibold">
           <p className="justify-between font-medium">
-            Logged in as {userName.loggedInAs}
+            Logged in as {window.localStorage.getItem("User")}
           </p>
         </li>
         <li className="text-black font-semibold">

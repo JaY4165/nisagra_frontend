@@ -1,15 +1,12 @@
-import { useContext, React } from "react";
+import { React } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthProvider";
 
 const LoginForm = () => {
-  const { setAuth, setUser } = useContext(AuthContext);
-
   const navigate = useNavigate();
 
   const schema = yup.object().shape({
@@ -31,16 +28,17 @@ const LoginForm = () => {
   const onSubmit = async (data, event) => {
     event.preventDefault();
     try {
-      console.log(data);
       const loginResponse = await axios.post(
         "http://localhost:8090/login/signin",
         data
       );
+      console.log(loginResponse.data);
       if ((await loginResponse.data.status) === 200) {
         const emailAuth = await data.email.split("@");
         alert(emailAuth[0]);
-        setAuth(true);
-        setUser(emailAuth[0]);
+        window.localStorage.setItem("Auth", true);
+        window.localStorage.setItem("User", emailAuth[0]);
+        window.localStorage.setItem("UserId", loginResponse.data.userId);
         navigate("/");
       }
     } catch (err) {

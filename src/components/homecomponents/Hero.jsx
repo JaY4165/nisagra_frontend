@@ -9,7 +9,7 @@ const Hero = () => {
         className="flex flex-col items-center justify-center h-screen overflow-x-hidden"
       >
         <div id="hero" className="w-[100%] h-screen bg-cover bg-center">
-          <div className="w-screen h-screen flex  justify-center items-center backdrop-brightness-50 bg-black/20 flex-col gap-2">
+          <div className="w-screen h-screen flex  justify-center items-center backdrop-brightness-50 flex-col gap-2">
             <h1
               id="heroHead"
               className="text-white text-4xl sm:text-6xl md:text-9xl w-full text-center uppercase font-semibold tracking-wider selection:text-success"
