@@ -1,9 +1,7 @@
 import { createContext } from "react";
 import { useState } from "react";
 
-export const CartContext = createContext({
-  cartStatus: "empty",
-});
+export const CartContext = createContext({});
 
 export const CartProvider = ({ children }) => {
   const [cartStatus, setCartStatus] = useState("notempty");

@@ -6,10 +6,22 @@ const CartCard = () => {
   const { setCartStatus, cartStatus } = useContext(CartContext);
 
   const [food, setFood] = useState([]);
+  // const [foodQuantity, setFoodQuantity] = 1;
   // const [cartStatus, setCartStatus] = useState("empty");
+  const [totalPrice, setTotalPrice] = useState(null);
 
   const id = window.localStorage.getItem("UserId");
   // const id = 12;
+
+  const calculateTotal = async (items) => {
+    let total = 0;
+    console.log("items", items);
+    for (let i = 0; i < items.length; i++) {
+      total += items[i].food_price * items[i].food_quantity;
+    }
+    console.log(total);
+    return total;
+  };
 
   const fetchCartData = async () => {
     try {
@@ -32,6 +44,10 @@ const CartCard = () => {
     fetchCartData();
   }, []);
 
+  useEffect(() => {
+    calculateTotal(food);
+  }, [fetchCartData]);
+
   return (
     <>
       {cartStatus === "notempty" ? (
@@ -40,7 +56,6 @@ const CartCard = () => {
             className="justify-between mb-6 rounded-lg bg-black/20 p-6 shadow-md sm:flex sm:justify-start relative"
             key={item.id}
           >
-            {console.log(item)}
             <img
               src={item.food_image}
               alt={item.food_name}
@@ -63,8 +78,9 @@ const CartCard = () => {
                   <input
                     className="h-8 w-8 bg-black/25 text-center text-xs outline-none"
                     type="number"
-                    // value={item.food_quantity}
+                    value={item.food_quantity}
                     min="1"
+                    onChange={(e) => setFoodQuantity(e.target.value)}
                   />
                   <span className="cursor-pointer rounded-r bg-black/25 py-1 px-3 duration-100 hover:bg-emerald-400 hover:text-blue-50">
                     +
@@ -94,7 +110,7 @@ const CartCard = () => {
         ))
       ) : (
         <div className="flex h-screen w-screen justify-center items-center">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold font-sans texy-white">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold font-sans text-white">
             Cart is empty
           </h1>
         </div>
