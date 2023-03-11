@@ -3,32 +3,24 @@ import axios from "axios";
 import { CartContext } from "../../context/CartContext";
 
 const CartCard = () => {
-  const { setCartStatus, cartStatus } = useContext(CartContext);
-
-  const [food, setFood] = useState([]);
-  // const [foodQuantity, setFoodQuantity] = 1;
-  // const [cartStatus, setCartStatus] = useState("empty");
-  const [totalPrice, setTotalPrice] = useState(null);
+  const {
+    setCartStatus,
+    cartStatus,
+    setTotalPrice,
+    cartData,
+    setCartData,
+    setCartCount,
+  } = useContext(CartContext);
 
   const id = window.localStorage.getItem("UserId");
-  // const id = 12;
-
-  const calculateTotal = async (items) => {
-    let total = 0;
-    console.log("items", items);
-    for (let i = 0; i < items.length; i++) {
-      total += items[i].food_price * items[i].food_quantity;
-    }
-    console.log(total);
-    return total;
-  };
 
   const fetchCartData = async () => {
     try {
       const data = await axios.get(`http://localhost:8090/cart/${id}`);
       console.log(data.data.data);
-      setFood(data.data.data);
+      setCartData(data.data.data);
       setCartStatus("notempty");
+      setCartCount(data.data.data.length);
       console.log(cartStatus);
 
       if (data.data.data.length === 0) {
@@ -40,18 +32,29 @@ const CartCard = () => {
     }
   };
 
+  const calculateTotal = async (items) => {
+    let total = 0;
+    console.log("items", items);
+    for (let i = 0; i < items.length; i++) {
+      total += items[i].food_price * items[i].food_quantity;
+    }
+    console.log(total);
+    setTotalPrice(total);
+    return total;
+  };
+
   useEffect(() => {
     fetchCartData();
   }, []);
 
   useEffect(() => {
-    calculateTotal(food);
+    calculateTotal(cartData);
   }, [fetchCartData]);
 
   return (
     <>
       {cartStatus === "notempty" ? (
-        food.map((item) => (
+        cartData.map((item) => (
           <div
             className="justify-between mb-6 rounded-lg bg-black/20 p-6 shadow-md sm:flex sm:justify-start relative"
             key={item.id}

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
 const NavCart = () => {
+  const { cartCount, totalPrice } = useContext(CartContext);
+
   return (
     <div className="dropdown dropdown-end pr-2">
       <label tabIndex={0} className="btn btn-ghost btn-circle text-white">
@@ -21,7 +24,7 @@ const NavCart = () => {
             />
           </svg>
           <span className="badge badge-sm indicator-item bg-primary text-white border-none">
-            8
+            {cartCount}
           </span>
         </div>
       </label>
@@ -30,8 +33,12 @@ const NavCart = () => {
         className="mt-3 card card-compact dropdown-content w-52  shadow"
       >
         <div className="card-body bg-white/80 rounded-lg">
-          <span className="font-bold text-black text-lg">8 Items</span>
-          <span className="text-blue-800 font-semibold">Subtotal: $999</span>
+          <span className="font-bold text-black text-lg">
+            {cartCount} Items
+          </span>
+          <span className="text-blue-800 font-semibold">
+            Subtotal : {totalPrice} ₹
+          </span>
           <div className="card-actions">
             <Link to={"/cart"} className="btn btn-primary btn-block">
               View cart
