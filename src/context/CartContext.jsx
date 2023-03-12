@@ -8,6 +8,7 @@ export const CartProvider = ({ children }) => {
   const [totalPrice, setTotalPrice] = useState(null);
   const [cartData, setCartData] = useState([]);
   const [cartCount, setCartCount] = useState(null);
+  const [valuesChanged, setValuesChanged] = useState(false);
 
   return (
     <CartContext.Provider
@@ -20,6 +21,8 @@ export const CartProvider = ({ children }) => {
         setCartData,
         cartCount,
         setCartCount,
+        valuesChanged,
+        setValuesChanged,
       }}
     >
       {children}

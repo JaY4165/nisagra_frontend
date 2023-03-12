@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-// import { data } from "../../json/data";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { CartContext } from "../../context/CartContext";
 
 const HomeItems = () => {
   const [shoppingItems, setShoppingItems] = useState([]);
   const [shoppingItemsStatus, setShoppingItemsStatus] = useState("notempty");
+
+  const { valuesChanged, setValuesChanged } = useContext(CartContext);
 
   const fetchShoppingData = async () => {
     try {
@@ -24,7 +26,34 @@ const HomeItems = () => {
     fetchShoppingData();
   }, []);
 
-  // const foods = data;
+  const handleAddToCart = async (item) => {
+    try {
+      const uid = window.localStorage.getItem("UserId");
+
+      if (!uid) {
+        alert("Please login to add items to cart");
+        return;
+      }
+      const iq = {
+        food_quantity: 1,
+        checkedout: false,
+        user_id: uid,
+      };
+      const sendToCart = { ...item, ...iq };
+      console.log(sendToCart);
+      const res = await axios.post(
+        "http://localhost:8090/addToCart",
+        sendToCart
+      );
+      if (res.data.status === 200) {
+        alert("Item added to cart");
+        setValuesChanged(true);
+      }
+    } catch (err) {
+      alert(err);
+    }
+  };
+
   return (
     <div className="pt-20 pb-10">
       <h1 className="uppercase text-5xl text-white font-extralight text-center pb-20">
@@ -49,8 +78,13 @@ const HomeItems = () => {
                 <p>{item.food_price}</p>
                 <div className="card-actions justify-end">
                   <button className="btn btn-md btn-ghost text-2xl">
-                    <AiOutlineShoppingCart />{" "}
-                    <span className="text-xs pl-2">Add to cart</span>
+                    <AiOutlineShoppingCart />
+                    <span
+                      className="text-xs pl-2"
+                      onClick={() => handleAddToCart(item)}
+                    >
+                      Add to cart
+                    </span>
                   </button>
                 </div>
               </div>

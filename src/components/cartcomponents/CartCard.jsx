@@ -3,6 +3,9 @@ import axios from "axios";
 import { CartContext } from "../../context/CartContext";
 
 const CartCard = () => {
+  // const [foodQuantity, setFoodQuantity] = useState(null);
+  // const [foodItemsData, setFoodItemsData] = useState(null);
+  const [itemDeletedStatus, setItemDeletedStatus] = useState(false);
   const {
     setCartStatus,
     cartStatus,
@@ -10,19 +13,21 @@ const CartCard = () => {
     cartData,
     setCartData,
     setCartCount,
+    valuesChanged,
   } = useContext(CartContext);
 
   const id = window.localStorage.getItem("UserId");
 
   const fetchCartData = async () => {
     try {
-      const data = await axios.get(`http://localhost:8090/cart/${id}`);
+      const endpointUrl = `http://localhost:8090/cart/${id}`;
+      const data = await axios.get(endpointUrl);
       console.log(data.data.data);
       setCartData(data.data.data);
       setCartStatus("notempty");
       setCartCount(data.data.data.length);
       console.log(cartStatus);
-
+      setItemDeletedStatus(false);
       if (data.data.data.length === 0) {
         setCartStatus("empty");
         console.log(cartStatus);
@@ -43,9 +48,31 @@ const CartCard = () => {
     return total;
   };
 
+  const handleQuantityChange = async (index, delta) => {
+    const updatedFoodItems = [...cartData];
+    updatedFoodItems[index].food_quantity += delta;
+    if (updatedFoodItems[index].food_quantity < 1) {
+      alert("item quantity should not be less than 1");
+      return;
+    }
+    setCartData(updatedFoodItems);
+
+    const endpointUrl = `http://localhost:8090/cart/${updatedFoodItems[index].id}/quantity?quantity=${updatedFoodItems[index].food_quantity}`;
+    const response = await axios.put(endpointUrl);
+    console.log(response);
+  };
+
+  const handleDeleteItem = async (id) => {
+    console.log(id);
+    const endpointUrl = `http://localhost:8090/cart/${id}`;
+    const response = await axios.delete(endpointUrl);
+    console.log(response);
+    setItemDeletedStatus(true);
+  };
+
   useEffect(() => {
     fetchCartData();
-  }, []);
+  }, [itemDeletedStatus, valuesChanged]);
 
   useEffect(() => {
     calculateTotal(cartData);
@@ -54,7 +81,7 @@ const CartCard = () => {
   return (
     <>
       {cartStatus === "notempty" ? (
-        cartData.map((item) => (
+        cartData.map((item, index) => (
           <div
             className="justify-between mb-6 rounded-lg bg-black/20 p-6 shadow-md sm:flex sm:justify-start relative"
             key={item.id}
@@ -75,22 +102,36 @@ const CartCard = () => {
               </div>
               <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                 <div className="flex items-center">
-                  <span className="cursor-pointer rounded-l bg-black/25 py-1 px-3.5 duration-100 hover:bg-emerald-400 hover:text-blue-50">
+                  <span
+                    className="cursor-pointer rounded-l bg-black/25 py-1 px-3.5 duration-100 hover:bg-emerald-400 hover:text-blue-50"
+                    onClick={() => handleQuantityChange(index, -1)}
+                  >
                     -
                   </span>
-                  <input
+                  {/* <input
                     className="h-8 w-8 bg-black/25 text-center text-xs outline-none"
                     type="number"
                     value={item.food_quantity}
                     min="1"
-                    onChange={(e) => setFoodQuantity(e.target.value)}
-                  />
-                  <span className="cursor-pointer rounded-r bg-black/25 py-1 px-3 duration-100 hover:bg-emerald-400 hover:text-blue-50">
+                    onChange={(e) =>
+                      handleQuantityChange(index, e.target.value)
+                    }
+                  /> */}
+                  <span className="h-8 w-8 bg-black/25 text-center pt-2 text-xs outline-none">
+                    {item.food_quantity}
+                  </span>
+                  <span
+                    className="cursor-pointer rounded-r bg-black/25 py-1 px-3 duration-100 hover:bg-emerald-400 hover:text-blue-50"
+                    onClick={() => handleQuantityChange(index, +1)}
+                  >
                     +
                   </span>
                 </div>
                 <div className="absolute right-6 bottom-6">
-                  <button className="btn btn-sm btn-ghost hover:text-red-500 mt-1">
+                  <button
+                    className="btn btn-sm btn-ghost hover:text-red-500 mt-1"
+                    onClick={() => handleDeleteItem(item.id)}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
