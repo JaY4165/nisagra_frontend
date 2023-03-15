@@ -57,14 +57,16 @@ const CartCard = () => {
     }
     setCartData(updatedFoodItems);
 
-    const endpointUrl = `http://localhost:8090/cart/${updatedFoodItems[index].id}/quantity?quantity=${updatedFoodItems[index].food_quantity}`;
+    const endpointUrl =
+      import.meta.env.VITE_BACKEND_API +
+      `/cart/${updatedFoodItems[index].id}/quantity?quantity=${updatedFoodItems[index].food_quantity}`;
     const response = await axios.put(endpointUrl);
     console.log(response);
   };
 
   const handleDeleteItem = async (id) => {
     console.log(id);
-    const endpointUrl = `http://localhost:8090/cart/${id}`;
+    const endpointUrl = import.meta.env.VITE_BACKEND_API + `/cart/${id}`;
     const response = await axios.delete(endpointUrl);
     console.log(response);
     setItemDeletedStatus(true);

@@ -59,7 +59,10 @@ const RegistrationForm = () => {
     event.preventDefault();
     try {
       console.log(data);
-      await axios.post("http://localhost:8090/register/signup", data);
+      await axios.post(
+        import.meta.env.VITE_BACKEND_API + "/register/signup",
+        data
+      );
       navigate("/login");
       alert("Please Login using your credentials");
     } catch (err) {

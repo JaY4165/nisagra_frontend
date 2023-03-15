@@ -7,13 +7,14 @@ const HomeItems = () => {
   const [shoppingItems, setShoppingItems] = useState([]);
   const [shoppingItemsStatus, setShoppingItemsStatus] = useState("notempty");
 
-  const { valuesChanged, setValuesChanged } = useContext(CartContext);
+  const { setValuesChanged } = useContext(CartContext);
 
   const fetchShoppingData = async () => {
     try {
-      const data = await axios.get("http://localhost:8090/getshoppingitems");
+      const data = await axios.get(
+        import.meta.env.VITE_BACKEND_API + "/getshoppingitems"
+      );
       setShoppingItems(data.data.items);
-
       if (data.data.items.length === 0) {
         setShoppingItemsStatus("empty");
       }
